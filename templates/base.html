@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>EcoCars</title>
+    <link href="{% static 'bs/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'custom.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <script src="{% static 'bs/js/bootstrap.js' %}"></script>
+    <script src="{% static 'bs/js/bootstrap.bundle.js' %}"></script>
+</head>
+<body>
+<ul class="nav navbar-dark bg-dark justify-content-center varinonormal border border-dark">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'car:base' %}">MAIN</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'car:cars' %}">PRODUCT</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'car:about' %}">ABOUT US</a>
+  </li>
+</ul>
+<ul class="nav navbar-dark bg-dark justify-content-center drexs border border-dark">
+  {% if user.is_authenticated %}
+    <li class="nav-item">
+
+      <small class=""><p class="nav-link text-white"> Welcome! {{ user.username }}!</p></small>
+
+    </li>
+    <li class="nav-item text-white">
+      <small><a class="nav-link text-white" aria-current="page" href="{% url 'user:logout' %}">Log out</a></small>
+    </li>
+  {% else %}
+    <li class="nav-item">
+      <small><a class="nav-link text-white" aria-current="page" href="{% url 'user:login' %}">Login</a></small>
+    </li>
+    <li class="nav-item">
+      <small><a class="text-white nav-link" href="{% url 'user:registrate' %}">Registrate</a></small>
+    </li>
+  {% endif %}
+</ul>
+{% block content %}
+
+<div id="car-carousel" class="carousel slide carousel-fade" data-bs-ride="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#car-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#car-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#car-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ car.photos.first.photo.url }}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block drexs fw-bolder">
+        <h3><a class="text-decoration-none fw-bold" href="{{ car.absolute_url }}">{{ car.name|upper }} </a> </h3>
+        <h5>Ala-Too Electro car </h5>
+        <p>First electro car in Kyrgyzstan made by students based on Tesla car</p>
+      </div>
+    </div>
+    {% for car_ph in car.photos.all|slice:'1:' %}
+      <div class="carousel-item">
+        <img src="{{ car_ph.photo.url }}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block drexs fw-bolder">
+        <h3><a class="text-decoration-none fw-bold" href="{{ car.absolute_url }}">{{ car.name|upper }} </a></h3>
+        <h5>Ala-Too Electro car</h5>
+        <p>First electro car in Kyrgyzstan made by students based on Tesla car</p>
+      </div>
+      </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#car-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#car-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% endblock %}
+<nav class="navbar fixedy-bottom bg-dark text-white border border-dark drexs">
+  <div class="p-3">
+    <p class="">&copy;2022-2022</p>
+    <a class="m-0" href="{% url 'car:about' %}">about us</a>
+    <br>
+    <a class="" href="http://www.alatoo.edu.kg/">about university</a>
+  </div>
+      <img src="{% static 'logo.png' %}" class="me-3" style="height:120px; width:120px" alt="">
+</nav>
+</body>
+</html>
