@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-md-center">
+        <h1 class="text-center">REGISTRATE</h1>
+        <hr>
+        <div class="col-4">
+            <form method="post" action="{% url 'user:registrate' %}">
+
+                <p>{{ form.errors }}</p>
+                {% for field in form %}
+                <div class="form-group mb-3">
+                    {{ field.label }}
+                    {{ field }}
+                    {{ field.help_text }}
+                </div>
+                {% endfor %}
+                {% csrf_token %}
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-block btn-success mb-2" data-dismiss="modal">Sign up</button>
+                    <a href="{% url 'car:base' %}" class="text-center" data-dismiss="modal">
+                        Cancel
+                    </a>
+                </div>
+                <small>
+                    <p class="text-center font-small">Old user)?
+                        <a href="{% url 'user:login' %}" role="button">
+                            Login
+                        </a>
+                    </p>
+                </small>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
