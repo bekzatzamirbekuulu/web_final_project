@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'VarinonormalRegular';
+    src: url('./VarinonormalRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.varinonormal {
+    font-family: 'VarinonormalRegular';
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Drexs';
+    src: url('./Drexs.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.drexs {
+    font-family: 'Drexs';
+    font-weight: normal;
+    font-style: normal;
+}
