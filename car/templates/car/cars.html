@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-md-center">
+        <hr class="mt-5">
+        <h1 class="drexs text-center">Our products</h1>
+        <hr>
+        <h5 class="drexs text-center">Right now we have only 1 model of car, soon we'll add more</h5>
+        {% for car in cars %}
+        <div class="col-9">
+            <div class="card mb-5 mt-5 shadow card text-bg-dark mb-3 rounded-0 drexs fw-bold">
+                <img src="{{  car.photos.first.photo.url }}" class="card-img-top rounded-0" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Model: {{ car.name }}</h5>
+                    <p class="card-text">{{ car.description|slice:130 }} ...</p>
+                    <a class="btn btn-outline-light rounded-0" href="{{ car.absolute_url }}">More</a>
+                    <hr>
+                    <p class="card-text"><small class="text-secondary">{{ car.date }}</small></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

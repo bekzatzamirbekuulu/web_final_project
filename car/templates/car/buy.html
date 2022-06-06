@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-md-center">
+
+        <h1 class="drexs text-center mt-5"> ORDER PAGE</h1>
+        <hr>
+        <div class="card drexs mt-5 mb-5 p-0" style="width: 30rem;">
+            <form action="{% url 'car:order' %}" method="post">
+              <img src="{{car.photos.first.photo.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+
+            <h5 class="card-title">
+                <input type="text" name="car_name" hidden value="{{ car.name }}">
+                Model: {{car.name}}
+            </h5>
+            <p class="card-text text-success">
+                <input type="text" name="car_price" hidden value="{{ car.price }}">
+                Price: {{ car.price }}$
+            </p>
+              <p>
+              If you want a call instead of email fill the field bellow
+                  </p>
+              <input class="form-control mb-3" type="text" name="user_number" value="0">
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Order</button>
+              </div>
+          </div>
+                {% csrf_token %}
+                </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
