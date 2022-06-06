@@ -1,7 +1,7 @@
 # WEB Final project
 A electro car web shop
 ## WEB site
-https://spring-final-project.herokuapp.com/
+https://webcar-final-project.herokuapp.com/
 ## Team members
 Bekzat Zamirbek Uulu, Chyngyz Utkelbaev
 ## Database ERD
